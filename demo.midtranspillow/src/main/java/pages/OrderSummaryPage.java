@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class OrderSummaryPage {
-    WebDriver driver;
+    public static WebDriver driver;
 
     public OrderSummaryPage(WebDriver driver){
         this.driver = driver;
@@ -23,6 +23,8 @@ public class OrderSummaryPage {
     WebElement priceOfProductOnSummaryPopup;
     @FindBy(xpath = "//span[normalize-space()='Details']")
     WebElement detailsOnOrderSummaryPage;
+    @FindBy(xpath = "//div[@class='close-snap-button clickable']")
+    WebElement closeIFramePopupElement;
 
     public boolean checkIfOrderSummaryIFramePopUp(){
        return orderSummaryIFramePopup.isDisplayed();
@@ -30,7 +32,7 @@ public class OrderSummaryPage {
     public boolean checkIfProductNameIsCorrectInSummaryPopup(){
         return productNameOnSummaryPopup.isDisplayed();
     }
-    public boolean checkIfPriceIsCorrectInSummqaryPopup(){
+    public boolean checkIfPriceIsCorrectInSummaryPopup(){
         return priceOfProductOnSummaryPopup.isDisplayed();
     }
     public void switchToIFrame(){
@@ -38,6 +40,12 @@ public class OrderSummaryPage {
     }
     public void clickOnDetailsOnOrderSummaryIFrame(){
         detailsOnOrderSummaryPage.click();
+    }
+    public void switchBackToDefaultPage(){
+        driver.switchTo().defaultContent();
+    }
+    public void closeIFramePopup(){
+        closeIFramePopupElement.click();
     }
 
 }

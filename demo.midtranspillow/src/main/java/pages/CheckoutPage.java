@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutPage {
-    WebDriver driver;
+    public static WebDriver driver;
 
     public CheckoutPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-    @FindBy(xpath = "//a[@class='btn buy']")
+    @FindBy(xpath = "//a[normalize-space()='BUY NOW']")
     WebElement buyNowButton;
 
     @FindBy(xpath = "//td[@class='amount']")
@@ -40,6 +40,10 @@ public class CheckoutPage {
     WebElement postalCodeTextbox;
     @FindBy(xpath = "//div[normalize-space()='CHECKOUT']")
     WebElement checkoutButton;
+
+
+    @FindBy(xpath = "//iframe[@id='snap-midtrans']")
+    WebElement iFrame;
 
 
 
@@ -73,7 +77,7 @@ public class CheckoutPage {
     public void checkIfPostalCodeTextboxIsEditable(){
         postalCodeTextbox.sendKeys("112233");
     }
-    public void checkIfCheckoutButtonIsClickable(){
+    public void clickOnCheckoutButton(){
         checkoutButton.click();
     }
 
@@ -97,4 +101,7 @@ public class CheckoutPage {
     public boolean checkIfPostalCodeTextBoxIsVisible() {
        return  postalCodeTextbox.isDisplayed();
     }
+
+    public void switchBackToDefaultPage(){
+        driver.switchTo().defaultContent();}
 }

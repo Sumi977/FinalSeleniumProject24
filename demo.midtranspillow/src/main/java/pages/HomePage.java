@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-    WebDriver driver;
+    public static WebDriver driver;
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -14,6 +14,7 @@ public class HomePage {
     }
     @FindBy(xpath = "//a[normalize-space()='Coco']")
     WebElement cocoTextOnLeftHeader;
+
 
     public boolean checkIfCocoTextDisplayedOnLeftHeader(){
         return cocoTextOnLeftHeader.isDisplayed();

@@ -4,8 +4,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
-import setUp.DriverFactory;
-import setUp.Util;
+import setup.DriverFactory;
+import setup.Util;
 
 
 public class CheckoutTest {
@@ -27,7 +27,7 @@ public class CheckoutTest {
 
 
     }
-    @Test(priority = 1)
+    @Test(priority = 1)//Test case 1 & 2
     public void verifyIfMidtransPillowsAddedToCart() {
         checkoutPage.clickOnBuyNowButton();
         Util.pauseExecutionForSeconds(2);
@@ -36,7 +36,7 @@ public class CheckoutTest {
         Assert.assertTrue(actualValue,"20000");
         Util.pauseExecutionForSeconds(2);
     }
-    @Test(priority = 2)
+    @Test(priority = 2) //Test case 3
     public void verifyNameEmailPhoneCityAddressPostalCodeInCheckoutPage(){
         Assert.assertTrue(checkoutPage.checkIfNameTextBoxIsVisible());
         Assert.assertTrue(checkoutPage.checkIfEmailTextBoxIsVisible());
@@ -47,7 +47,7 @@ public class CheckoutTest {
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3) // Test case 4
     public void verifyNameEmailPhoneCityAddressPostalCodeInCheckoutPageIsEditable(){
 
         checkoutPage.checkIfNameTextBoxIsEditable();
@@ -62,12 +62,12 @@ public class CheckoutTest {
         Util.pauseExecutionForSeconds(2);
         checkoutPage.checkIfPostalCodeTextboxIsEditable();
         Util.pauseExecutionForSeconds(2);
-        checkoutPage.checkIfCheckoutButtonIsClickable();
+        checkoutPage.clickOnCheckoutButton();
         Util.pauseExecutionForSeconds(2);
     }
 
     @AfterClass(alwaysRun = true)
-    public void closeBrowser(){
+    public void tearDown(){
         basePage.closeBrowser();
     }
 }

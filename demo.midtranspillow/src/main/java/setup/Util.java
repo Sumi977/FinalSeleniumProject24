@@ -1,4 +1,4 @@
-package setUp;
+package setup;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,4 +25,6 @@ public class Util {
     public static String getProperties(String propertyName){
         return loadProperties().getProperty(propertyName).trim();
     }
+
+
 }
