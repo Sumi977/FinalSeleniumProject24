@@ -78,6 +78,16 @@ public class PaymentPage {
     @FindBy(xpath = "//div[@class='close-snap-button clickable']")
     WebElement closeFrame1;
 
+    @FindBy(xpath = "//button[@type='button']")
+    WebElement payNowButton;
+
+    @FindBy(xpath = "//button[@type='button']")
+    WebElement backButtonOnOrderPayment;
+
+    public void clickOnBackButtonToCancelOrder(){
+        backButtonOnOrderPayment.click();
+    }
+
     public void quitFrame1(){
         closeFrame1.click();
 
@@ -92,6 +102,10 @@ public class PaymentPage {
 
     public void switchToFrame1(){
         driver.switchTo().frame(frame1);
+    }
+
+    public void clickOnPayNowButton(){
+        payNowButton.click();
     }
 
 

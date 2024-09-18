@@ -20,4 +20,7 @@ public class HomePage {
         return cocoTextOnLeftHeader.isDisplayed();
 
     }
+    public void refreshHomePageByClickingOnCocoHeader(){
+        cocoTextOnLeftHeader.click();
+    }
 }

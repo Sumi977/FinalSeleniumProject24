@@ -64,14 +64,13 @@ public class PaymentTest {
         paymentPage.chooseCreditDebitCardPmtOption();
         Assert.assertTrue(paymentPage.checkIfUserRedirectedToCardDetailsScreen());
         orderSummaryPage.closeIFramePopup();        
-                                                    
-        orderSummaryPage.switchBackToDefaultPage(); 
+        orderSummaryPage.switchBackToDefaultPage();
 
 
 
 
     }
-
+    //Test case 10 & 11
    @Test(priority = 3)
    public void verifyOrderAmountOnCardDetailsScreenBeforeCouponCode(){
         checkoutPage.clickOnBuyNowButton();
@@ -84,14 +83,10 @@ public class PaymentTest {
         paymentPage.enterValidExpiryDateOfCreditCard();
         Util.pauseExecutionForSeconds(2);
         paymentPage.enterValidCvv();
-
-
-
-
-
-
-
-   }
+        paymentPage.selectPromoCouponCode();
+        boolean actualValue = paymentPage.checkIfOrderAmountIsRp19000InCardDetailScreen();
+        Assert.assertTrue(actualValue,"19000");
+    }
 
 
 
