@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<suite name = "Simple HTML-XML Suite">
+    <test name = "demo Midtrans Pillow">
+        <classes>
+            <class name = "test.CheckoutTest"/>
+            <class name = "test.OrderSummaryTest"/>
+            <class name = "test.PaymentTest"/>
+            <class name = "test.BankPaymentTest"/>
+            <class name = "test.BankPaymentInvalidOTPTest"/>
+            <class name = "test.ClickingOnCancelButtonTest"/>
+        </classes>
+    </test>
+</suite>
