@@ -26,7 +26,7 @@ public class BankPaymentScreenPage {
 
 
     @FindBy(xpath = "//label[normalize-space()='Password:']")
-    WebElement passwordOnBankPaymentPage;
+    private WebElement passwordOnBankPaymentPage;
 
     @FindBy(xpath = "//button[normalize-space()='OK']")
     WebElement okOnBankPaymentPage;
@@ -66,6 +66,9 @@ public class BankPaymentScreenPage {
     @FindBy(xpath = "//iframe[@id='snap-midtrans']")
     WebElement backButtonIFrame;
 
+    @FindBy(xpath = "//div[@class='prompt-modal-subtitle']")
+    WebElement paymentDeclinedByBankScreen;//
+
     public void switchToBackButtonIFrame(){
         driver.switchTo().frame(backButtonIFrame);
     }
@@ -74,16 +77,17 @@ public class BankPaymentScreenPage {
         return orderFailedScreen.isDisplayed();
     }
 
-    public void enterWrongpasswordForIssuingBankPage(){
-        passwordTextboxOnBankPaymentScreen.sendKeys("332211");
-    }
+
     public boolean checkIfPaymentDeclinedByBankScreenIsVisible(){
         return paymentDeclinedByBank.isDisplayed();
     }
 
     public void enterPasswordOnBankPaymentScreen(){
         passwordTextboxOnBankPaymentScreen.sendKeys("112233");
+    }
 
+    public void enterWrongpasswordForIssuingBankPage(){
+        passwordTextboxOnBankPaymentScreen.sendKeys("123456");
     }
     public void clickCancelButtonOnBankPaymentScreen(){
         cancelButtonOnBankPaymentScreen.click();
@@ -128,5 +132,6 @@ public class BankPaymentScreenPage {
         return thankYouForYourPurchaseScreen.isDisplayed();
 
     }
+
 }
 

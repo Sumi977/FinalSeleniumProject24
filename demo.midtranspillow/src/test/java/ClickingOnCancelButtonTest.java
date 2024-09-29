@@ -1,11 +1,13 @@
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pages.*;
 import setup.DriverFactory;
 import setup.Util;
 
-public class BankPaymentTest {
+public class ClickingOnCancelButtonTest {
     WebDriver driver;
     BasePage basePage;
     CheckoutPage checkoutPage;
@@ -46,39 +48,18 @@ public class BankPaymentTest {
         Util.pauseExecutionForSeconds(2);
         bankPaymentScreenPage.switchToBankPaymentScreenIFrame();
     }
-    // Test case 12
-    @Test(priority = 1)
-    public void verifyAfterClickingPayNowButtonUserRedirectToBankPaymentScreenAndDetails(){
+    // Test case 15
+
+    @Test
+    public void verifyClickingOnCancelButtonUserRedirectToPaymentDeclinedByBankScreen(){
 
         Util.pauseExecutionForSeconds(2);
-        bankPaymentScreenPage.checkIfBankPaymentScreenIsVisible();
+        bankPaymentScreenPage.clickCancelButtonOnBankPaymentScreen();
         Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfMerchantNameOnBankPaymentScreenPageIsVisible());
+        driver.switchTo().frame(0);
         Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfAmountOnBankPaymentScreenPageIsVisible());
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfAmountOnBankPaymentScreenPageIsVisible());
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfTransactionTimeOnBankPaymentScreenPageIsVisible());
-        Assert.assertTrue(bankPaymentScreenPage.checkIfCardNumberOnBankPaymentScreenPageIsVisible());
-
-
+        Assert.assertTrue(bankPaymentScreenPage.checkIfPaymentDeclinedByBankScreenIsVisible());
     }
-    // Test case 13
-    @Test(priority = 2)
-    public void verifyClickingOnOKButtonRedirectUserToOrderSuccessfullScreen(){
-
-        Util.pauseExecutionForSeconds(2);
-        bankPaymentScreenPage.enterPasswordOnBankPaymentScreen();
-        Util.pauseExecutionForSeconds(2);
-        bankPaymentScreenPage.clickOnOkButtonOnBankPaymentPage();
-        Util.pauseExecutionForSeconds(2);
-        driver.switchTo().defaultContent();
-        Assert.assertTrue(bankPaymentScreenPage.checkIfThankYouForYourPurchaseTextIsVisible());
-    }
-
-
-
     @AfterClass(alwaysRun = true)
     public void tearDown(){
         basePage.closeBrowser();

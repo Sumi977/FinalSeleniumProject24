@@ -1,11 +1,13 @@
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pages.*;
 import setup.DriverFactory;
 import setup.Util;
 
-public class BankPaymentTest {
+public class BankPaymentInvalidOTPTest {
     WebDriver driver;
     BasePage basePage;
     CheckoutPage checkoutPage;
@@ -14,8 +16,9 @@ public class BankPaymentTest {
     PaymentPage paymentPage;
     BankPaymentScreenPage bankPaymentScreenPage;
 
+
     @BeforeClass(alwaysRun = true)
-    public void setUp(){
+    public void setUp() {
         driver = DriverFactory.getDriver(Util.getProperties("browserName"));
         basePage = new BasePage(driver);
         checkoutPage = new CheckoutPage(driver);
@@ -46,35 +49,22 @@ public class BankPaymentTest {
         Util.pauseExecutionForSeconds(2);
         bankPaymentScreenPage.switchToBankPaymentScreenIFrame();
     }
-    // Test case 12
-    @Test(priority = 1)
-    public void verifyAfterClickingPayNowButtonUserRedirectToBankPaymentScreenAndDetails(){
-
+    // Test case 14
+    @Test
+    public void verifyEnteringWrongOTPShouldRedirectUserToPaymentDeclinedScreen(){
         Util.pauseExecutionForSeconds(2);
-        bankPaymentScreenPage.checkIfBankPaymentScreenIsVisible();
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfMerchantNameOnBankPaymentScreenPageIsVisible());
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfAmountOnBankPaymentScreenPageIsVisible());
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfAmountOnBankPaymentScreenPageIsVisible());
-        Util.pauseExecutionForSeconds(2);
-        Assert.assertTrue(bankPaymentScreenPage.checkIfTransactionTimeOnBankPaymentScreenPageIsVisible());
-        Assert.assertTrue(bankPaymentScreenPage.checkIfCardNumberOnBankPaymentScreenPageIsVisible());
-
-
-    }
-    // Test case 13
-    @Test(priority = 2)
-    public void verifyClickingOnOKButtonRedirectUserToOrderSuccessfullScreen(){
-
-        Util.pauseExecutionForSeconds(2);
-        bankPaymentScreenPage.enterPasswordOnBankPaymentScreen();
+        bankPaymentScreenPage.enterWrongpasswordForIssuingBankPage();
         Util.pauseExecutionForSeconds(2);
         bankPaymentScreenPage.clickOnOkButtonOnBankPaymentPage();
         Util.pauseExecutionForSeconds(2);
+        driver.switchTo().frame(0);
+        Util.pauseExecutionForSeconds(2);
+        bankPaymentScreenPage.clickOnBackButton();
+        Util.pauseExecutionForSeconds(2);
         driver.switchTo().defaultContent();
-        Assert.assertTrue(bankPaymentScreenPage.checkIfThankYouForYourPurchaseTextIsVisible());
+        Util.pauseExecutionForSeconds(2);
+        Assert.assertTrue(bankPaymentScreenPage.checkIfUserRedirectToOrderFailedScreen());
+
     }
 
 
@@ -84,3 +74,14 @@ public class BankPaymentTest {
         basePage.closeBrowser();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
