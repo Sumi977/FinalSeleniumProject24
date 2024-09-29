@@ -48,6 +48,7 @@ public class PaymentTest {
         Assert.assertTrue(paymentPage.checkIfAkulakuPayLaterPaymentMethodIsAvailable());
         Assert.assertTrue(paymentPage.checkIfKredivoPaymentMethodIsAvailable());
         Util.pauseExecutionForSeconds(2);
+
         
         orderSummaryPage.closeIFramePopup();
 

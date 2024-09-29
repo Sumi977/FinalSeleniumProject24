@@ -37,14 +37,52 @@ public class BankPaymentScreenPage {
     @FindBy(xpath = "//iframe[@title='3ds-iframe']")
     WebElement bankPaymentScreenIFrame;
 
-    @FindBy(xpath = "//input[@type='password']")
-    WebElement passwordTextboxOnBankPaymentScreen;
 
     @FindBy(xpath = "//button[@name='cancel']")
     WebElement cancelButtonOnBankPaymentScreen;
 
+    @FindBy(xpath = "//input[@id='otp']")
+    WebElement passwordTextboxOnBankPaymentScreen;
+
+//    @FindBy(xpath = "//div[@class='trans-status trans-success']")
+//    WebElement orderSuccessFullScreen;
+
+    @FindBy(xpath = "//div[@class='trans-status trans-success']")
+    WebElement thankYouForYourPurchaseScreen;
+
+    @FindBy(xpath = "//div[normalize-space()='Payment declined by bank']")
+    WebElement paymentDeclinedByBank;
+
+    @FindBy(xpath = "//button[normalize-space()='Back']")
+    WebElement backButton;
+
+    public void clickOnBackButton(){
+        backButton.click();
+    }
+
+    @FindBy(xpath = "//div[@class='trans-status trans-error']")
+    WebElement orderFailedScreen;
+
+    @FindBy(xpath = "//iframe[@id='snap-midtrans']")
+    WebElement backButtonIFrame;
+
+    public void switchToBackButtonIFrame(){
+        driver.switchTo().frame(backButtonIFrame);
+    }
+
+    public boolean checkIfUserRedirectToOrderFailedScreen(){
+        return orderFailedScreen.isDisplayed();
+    }
+
+    public void enterWrongpasswordForIssuingBankPage(){
+        passwordTextboxOnBankPaymentScreen.sendKeys("332211");
+    }
+    public boolean checkIfPaymentDeclinedByBankScreenIsVisible(){
+        return paymentDeclinedByBank.isDisplayed();
+    }
+
     public void enterPasswordOnBankPaymentScreen(){
-        passwordOnBankPaymentPage.sendKeys("112233");
+        passwordTextboxOnBankPaymentScreen.sendKeys("112233");
 
     }
     public void clickCancelButtonOnBankPaymentScreen(){
@@ -85,6 +123,10 @@ public class BankPaymentScreenPage {
     }
     public void clickOnOkButtonOnBankPaymentPage(){
         okOnBankPaymentPage.click();
+    }
+    public boolean checkIfThankYouForYourPurchaseTextIsVisible(){
+        return thankYouForYourPurchaseScreen.isDisplayed();
+
     }
 }
 
