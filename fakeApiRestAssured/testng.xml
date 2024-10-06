@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Testing API for FakeApiSwagger ">
+    <test name="Verifying Api Requests" thread-count="1" parallel="false">
+        <classes>
+            <class name = "finalProjectApiAutomation.GetAPIRequest"/>
+            <class name = "finalProjectApiAutomation.PostApiRequest"/>
+            <class name = "finalProjectApiAutomation.PutApiRequest"/>
+            <class name = "finalProjectApiAutomation.DeleteApiRequest"/>
+
+        </classes>
+
+    </test>
+</suite>
